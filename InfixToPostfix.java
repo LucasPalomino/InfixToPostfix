@@ -7,10 +7,8 @@ public class Lab13_1
     // to postfix notation (as an ArrayList of Strings)
     private static ArrayList<String> toPostfix(String infixStr) throws MismatchParenException
     {
-        // Create Scanner to scan over infixStr
+        // Creates Scanner to scan over infixStr
         Scanner input = new Scanner(infixStr);
-
-        // TODO: Add code here
 
         ArrayList<String> output = new ArrayList<>();
         ArrayList<String> stack = new ArrayList<>();
@@ -19,13 +17,10 @@ public class Lab13_1
         {
             String s = input.next();
 
-            // Q1
             if(s.equals("("))
             {
                 stack.add(stack.size() - 1, s);
             }
-
-            // Q2
             else if(s.equals(")"))
             {
                 while(!stack.get(stack.size() - 1).equals("("))
@@ -36,8 +31,6 @@ public class Lab13_1
                 }
                 stack.remove(stack.get(stack.size()-1));
             }
-
-            // Q3
             else if(isOperator(s))
             {
                 while(!stack.isEmpty())
@@ -51,8 +44,6 @@ public class Lab13_1
                 }
                 stack.add(stack.size(), s);
             }
-
-            // Q4
             else
             {
                 output.add(output.size(), s);
@@ -66,12 +57,11 @@ public class Lab13_1
             stack.remove(i);
 
         }
-
-        // TODO: return the actual result instead
+        
         return output; // replace this line
     }
 
-    // Evaluate the postfix expression.
+    // Evaluates the postfix expression.
     // The input is an ArrayList of tokens (Strings).
     private static double eval(ArrayList<String> postfix)
     {
@@ -79,8 +69,6 @@ public class Lab13_1
 
         for (String s : postfix)
         {
-            // if s is an operator, then perform its operation
-            // Otherwise, add it to stack
             switch (s)
             {
                 case "+":
@@ -114,7 +102,7 @@ public class Lab13_1
         return stack.get(stack.size() - 1);
     }
 
-    // Test if a token is an operator
+    // Tests if a token is an operator
     private static boolean isOperator(String s)
     {
         return s.equals("+") || s.equals("-") ||
@@ -154,7 +142,7 @@ public class Lab13_1
     {
         Scanner input = new Scanner(System.in);
 
-        // Prompt user for expression in infix notation
+        // Prompts user for expression in infix notation
         System.out.println("Enter infix expression (tokens separated by white space):");
         String infixStr = input.nextLine();
 
@@ -172,12 +160,12 @@ public class Lab13_1
             System.exit(-1);
         }
 
-        // Display postfix
+        // Displays postfix
         System.out.println();
         System.out.println("Converted to postfix:");
         System.out.println(concatWithSpace(postfix));
 
-        // Evaluate postfixStr and display the result
+        // Evaluates postfixStr and display the result
         System.out.println();
 
         try
